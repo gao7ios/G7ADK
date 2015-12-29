@@ -65,10 +65,7 @@
 
 **项目修改**
 
-- Other Linker Flags 添加 -lstdc++  -ObjC
-- 去掉原项目的Google广告SDK
-- 去掉原项目的zipArchive
-
+- Other Linker Flags 添加 -lstdc++    -ObjC
 
 **注意事项**
 
