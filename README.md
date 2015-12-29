@@ -10,7 +10,7 @@
 ## 最少代码接入最多平台
 
 - 线程自动执行，根据广告后台配置展示平台广告，自动上报展示和点击；
-- 支持的广告平台：广点通、百度移动、Inmobi、Admob、Gao7(自家);
+- 支持的广告平台：广点通、百度移动、Inmobi、Admob、Gao7(自家)；
 - 支持的广告类型：横幅广告、插屏广告、开屏广告；
 
   AD	| GDT | InMobi |     BaiduMob   | Admob | Gao7 |
@@ -101,7 +101,7 @@
 ```objc
 	
 	//开启插屏广告，默认开启
-		[[ADKUnion sharedInstance] setEnableAdInterstitial:YES];
+	[[ADKUnion sharedInstance] setEnableAdInterstitial:YES];
 	
 	//设置 IADKUnionAdInterstitialDelegate
 	[[ADKUnion sharedInstance] forwardingAdInterstitialDelegateTo:self];
@@ -114,10 +114,10 @@
 ```objc
 	
 	//开启开屏广告，默认开启
-		[[ADKUnion sharedInstance] setEnableSplashAd:YES];
+	[[ADKUnion sharedInstance] setEnableSplashAd:YES];
 	
 	//设置开屏广告背景颜色，当图片格式不符合屏幕尺寸时，SDK会按比例压缩图片大小，使其适应；
-		[[ADKUnion sharedInstance] setSplashBackgroundColor:[UIColor whiteColor]];
+	[[ADKUnion sharedInstance] setSplashBackgroundColor:[UIColor whiteColor]];
 		
 	//设置 IADKUnionAdSplashDelegate
 	[[ADKUnion sharedInstance] forwardingAdSplashDelegateTo:self];
