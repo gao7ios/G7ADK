@@ -20,31 +20,138 @@
 开屏    	|  √  |   √    |    √ (No Rec.) |  √    |  √   |
 
 
+
+
 ## 如何使用
 
 
+**需要:**
+
+- 操作系统: Mac OS X 10.10.3 及以上版本 
+- 开发工具: Xcode 7.0 及以上版本 
+- 支持设备: iPhone/iPod Touch/iPad (iOS 7.0 及以上版本)
+
+**依赖:**
+
+- G7Core.framework 1.1.2.20151223
+- G7BLL.framework 1.2.3.151224
+- G7Network.framework
+- GoogleMobileAds.framework 7.6.0
+- SystemConfiguration.framework
+- Foundation.framework
+- ZipArchive.framework
+- AdSupport.framework
+- CoreLocation.framework
+- QuarzCore.framework
+- CoreTelephony.framework
+- Security.framework
+- StoreKit.framework
+- Social.framework
+- MessageUI.framework
+- MediaPlayer.framework
+- EventKit.framework
+- EventKitUI.framework
+- CoreFoundation.framework
+- CoreLocation.framework
+- CoreTelephony.framework
+- CFNetwork.framework
+- AVFoundation.framework
+- AudioToolbox.framework
+- AdSupport.framework
+- libc++.dylib 或 libc++.tbd
+- libsqlite3.0.dylib 或 libsqlite3.0.tbd
+- libz.dylib 或 libz.tbd
+
+
+**项目修改**
+
+- Other Linker Flags 添加 -lstdc++  -ObjC
+- 去掉原项目的Google广告SDK
+- 去掉原项目的zipArchive
+
+
+**注意事项**
+
+- 目前广告平台都是用HTTP请求，支持iOS9需要在 info.plist 文件中增加 
+如下配置:(信任 HTTP 请求)
+
+```
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+```
+
+
+**接入**
+
+- Banner
+
+```objc
+	
+	//创建Banner广告，PlaceId由后台配置
+	id<IADKUnionAdView> adview = [[ADKUnion sharedInstance] addBannerViewWithFrame:CGRectMake(0, 0, self.view.width, 50) placeId:1];
+	[self.view addSubview:(UIView *)adview];
+	
+	//设置 IADKUnionAdBannerDelegate
+	[[ADKUnion sharedInstance] forwardingAdBannerDelegateTo:self];
+	
+```
+
+
+- 插屏
+
+```objc
+	
+	//开启插屏广告，默认开启
+		[[ADKUnion sharedInstance] setEnableAdInterstitial:YES];
+	
+	//设置 IADKUnionAdInterstitialDelegate
+	[[ADKUnion sharedInstance] forwardingAdInterstitialDelegateTo:self];
+	
+```
+
+- 开屏
+
+
+```objc
+	
+	//开启开屏广告，默认开启
+		[[ADKUnion sharedInstance] setEnableSplashAd:YES];
+	
+	//设置开屏广告背景颜色，当图片格式不符合屏幕尺寸时，SDK会按比例压缩图片大小，使其适应；
+		[[ADKUnion sharedInstance] setSplashBackgroundColor:[UIColor whiteColor]];
+		
+	//设置 IADKUnionAdSplashDelegate
+	[[ADKUnion sharedInstance] forwardingAdSplashDelegateTo:self];
+	
+```
+
+- 其他
 
 ```objc
 
+	//开启Debug模式，SDK会打印所有广告日志
+	[[ADKUnion sharedInstance] setDebugMode:YES];
+	
+	//暂停广告执行，只对当前广告周期有效
+	[[ADKUnion sharedInstance] pause];
+	
+	//继续之前暂停的广告线程，只对当前广告周期有效
+	[[ADKUnion sharedInstance] resume];
+	
+	/**
+ 	* <p>*停止广告执行</p>
+	* <p>该方法会停止当前所有广告线程，并取消广告展示</p>
+	* <p>在下一次的广告周期(即应用重启或间隔30分钟从后台启动)，广告线程会自动重新开始执行</p>
+ 	*/
+	[[ADKUnion sharedInstance] stop];
+	
+	//移除广告
+	[[ADKUnion sharedInstance] removeAdViewWithId:AdID];
+	
 ```
 
-More complete version:
-
-```objc
-
-...
-
-
-```
-
-## Feature Examples
-### Modify Views
-
-### Learning from Other Apps
-
-
-## Installation
-Requires iOS 7 or higher
 
 ## TODO
 - 开放Debug模式
