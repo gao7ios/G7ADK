@@ -91,6 +91,8 @@
 	//设置 IADKUnionAdBannerDelegate
 	[[ADKUnion sharedInstance] forwardingAdBannerDelegateTo:self];
 	
+	//⚠️ 如果Banner移除，需要手动移除Delegate
+	[[ADKUnion sharedInstance] removeAdBannerDelegateForwarding:self];
 ```
 
 
